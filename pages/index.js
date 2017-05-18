@@ -1,13 +1,44 @@
+import { Component } from 'react'
 import Link from 'next/link'
 import Head from '../components/head'
 import Nav from '../components/nav'
 import { generateNumber } from '../utils/logic'
 import { formatIntoList } from '../utils/format'
 
-export default () => (
+export default class HomePage extends Component {
+  // Variables which you use in your view
+  state = {
+    n: '90'
+  }
+
+  // Actions
+
+  // This is called whenever my <input> changes
+  onChangegenerateNumberN = (event) => {
+    // Get value from <input>
+    const input = event.target
+    const value = input.value
+    // Change value of n in state
+    this.state.n = baseToNumber(value, 10)
+    // Call render() again and update the screen
+    this.forceUpdate()
+  }
+
+  // View
+
+  render() {
+    const { n } = this.state
+    //const n = this.state.n
+
+  return (
   <div>
     <Head title="Home" />
     <Nav />
+
+  <label style={{ display: 'block' }}>
+    Enter number:
+    <input value={ n } onChange={ this.onChangegenerateNumberN } />
+  </label>
 
     <div className="hero">
       <h1 className="title">Welcome to Next!</h1>
@@ -91,4 +122,6 @@ export default () => (
       }
     `}</style>
   </div>
-)
+  )
+}
+}
