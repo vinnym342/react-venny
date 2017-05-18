@@ -1,6 +1,6 @@
 export function generateNumber(type,range) {
   let results = []
-  for(let i = 0; i <= range; i++) {
+  for(let i = 1; i <= range; i++) {
     switch(type) {
       case "Odd":
           if(i % 2 === 0 ){
