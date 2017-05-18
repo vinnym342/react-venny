@@ -4,6 +4,8 @@ import Nav from '../components/nav'
 import { generateNumber } from '../utils/logic'
 import { formatIntoList } from '../utils/format'
 
+// sup fam
+
 export default () => (
   <div>
     <Head title="Home" />
