@@ -140,7 +140,6 @@ export default class HomePage extends Component {
         <button onClick={this.changeComparePrime}>Prime</button>
         </div>
         </div>
-
         <div className="vennSvg">
         <Venn sets={
           [
@@ -160,9 +159,6 @@ export default class HomePage extends Component {
         <p>A - B = {baseArray}</p>
         <p>B - A = {compareArray}</p>
         <p>A ∩ B = {union}</p>
-
-
-
       </div>
 
     )
