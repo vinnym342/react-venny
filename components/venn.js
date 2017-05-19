@@ -23,10 +23,22 @@ export default class Venn extends Component {
     // var sets = [ {sets: ['A'], size: 12},
     //          {sets: ['B'], size: 12},
     //          {sets: ['A','B'], size: 2}];
-    var sets = this.props.sets
-
-             var chart = venn.VennDiagram()
-             d3.select(el).datum(sets).call(chart);
+      var sets = this.props.sets
+      let valid = true
+      for(let i = 0; i < sets.length; i++){
+        if (sets[i]['size'] === 0){
+          valid = false
+        }
+      }
+      if (valid === false) {
+        sets=[
+          {sets: ['A'], size: 15},
+          {sets: ['B'], size: 15},
+          {sets: ['A','B'], size:  15}
+        ]
+      }
+       var chart = venn.VennDiagram()
+       d3.select(el).datum(sets).call(chart);
   }
 
   componentDidMount() {

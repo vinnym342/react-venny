@@ -107,18 +107,19 @@ export default class HomePage extends Component {
         </label>
         <p>A={base} numbers</p>
         <p>B={compare} numbers</p>
+
         <div className="buttons">
-        <div className="base">
         <style jsx>{`
-          .base {
+          .buttons {
+          float:right;
           display:flex;
-          width:10%;
-          flex-direction: column;
-        }
-        .base .vennSvg{
-          width:20%;
+          width:100%;
+          flex-direction: row;
+          justify-content: space-around;
         }
         `}</style>
+        <div className="base">
+        <h3>Change A</h3>
         <button onClick={this.changeBaseAll}>All</button>
         <button onClick={this.changeBaseOdd}>Odd</button>
         <button onClick={this.changeBaseEven}>Even</button>
@@ -126,29 +127,20 @@ export default class HomePage extends Component {
 
         </div>
         <div className="compare">
-        <style jsx>{`
-          .compare {
-            float:right;
-          display:flex;
-          width:10%;
-          flex-direction: column;
-        }
-        `}</style>
+        <h3>Change B</h3>
         <button onClick={this.changeCompareAll}>All</button>
         <button onClick={this.changeCompareOdd}>Odd</button>
         <button onClick={this.changeCompareEven}>Even</button>
         <button onClick={this.changeComparePrime}>Prime</button>
         </div>
         </div>
+
         <div className="vennSvg">
         <Venn sets={
           [
             {sets: ['A'], size: baseNumberArray.length},
             {sets: ['B'], size: compareNumberArray.length},
             {sets: ['A','B'], size:  union.length}
-            // {sets: ['A'], size: baseArray.length},
-            // {sets: ['B'], size: compareArray.length},
-            // {sets: ['A','B'], size:  union.length}
           ]
         } />
         </div>
