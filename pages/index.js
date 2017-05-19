@@ -117,6 +117,7 @@ export default class HomePage extends Component {
           Enter decimal:
           <input value={ n } onChange={ this.changeN } />
         </label>
+
         <p>A={base} numbers</p>
         <p>B={compare} numbers</p>
         <style jsx>{`

@@ -25,10 +25,8 @@ export default class Venn extends Component {
     //          {sets: ['A','B'], size: 2}];
       var sets = this.props.sets
       let valid = true
-      for(let i = 0; i < sets.length; i++){
-        if (sets[i]['size'] === 0){
-          valid = false
-        }
+      if (sets[0]['size'] === 0 && sets[1]['size'] === 0){
+        valid = false
       }
       if (valid === false) {
         sets=[

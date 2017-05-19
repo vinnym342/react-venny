@@ -1,11 +1,11 @@
-export function generateNumber(type,range) {
+export function generateNumber(type,rangeTop) {
   let results = []
-  for(let i = 1; i <= range; i++) {
+  for(let i = 1; i <= rangeTop; i++) {
     switch(type) {
 
       case "Fibonacci":
           let fibonacciNumber = fibonacci(i)
-          if(fibonacciNumber <= range ){
+          if(fibonacciNumber <= rangeTop ){
             results.push(fibonacciNumber)
           }else{
             break
