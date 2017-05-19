@@ -4,7 +4,7 @@ import Head from '../components/head'
 import Nav from '../components/nav'
 import d3 from 'd3'
 import venn from 'venn.js'
-import {generateNumber,arrayUnion} from '../utils/logic'
+import {generateNumber,arrayIntersection} from '../utils/logic'
 import {formatIntoList} from '../utils/format'
 import Venn from '../components/venn'
 // <h3>Even</h3>
@@ -20,8 +20,8 @@ export default class HomePage extends Component {
   // Variables which you use in your view
   state = {
     n: '20',
-    base: "All",
-    compare: "All"
+    base: "Fibonacci",
+    compare: "Prime"
   }
   // This is called whenever my <input> changes
   changeN = (event) => {
@@ -57,6 +57,12 @@ export default class HomePage extends Component {
     // Call render() again and update the screen
     this.forceUpdate()
   }
+  changeBaseFibonacci = (event) => {
+    // Change value of n in state
+    this.state.base = "Fibonacci"
+    // Call render() again and update the screen
+    this.forceUpdate()
+  }
   changeCompareAll = (event) => {
     // Change value of n in state
     this.state.compare = "All"
@@ -81,6 +87,12 @@ export default class HomePage extends Component {
     // Call render() again and update the screen
     this.forceUpdate()
   }
+  changeCompareFibonacci = (event) => {
+    // Change value of n in state
+    this.state.compare = "Fibonacci"
+    // Call render() again and update the screen
+    this.forceUpdate()
+  }
 
 
   // View
@@ -90,11 +102,11 @@ export default class HomePage extends Component {
 
     const baseNumberArray = generateNumber(base,n)
     const compareNumberArray = generateNumber(compare,n)
-    const data = arrayUnion(baseNumberArray,compareNumberArray)
+    const data = arrayIntersection(baseNumberArray,compareNumberArray)
 
     const baseArray = data[0]
     const compareArray = data[1]
-    const union  = data[2]
+    const intersection  = data[2]
 
     return (
       <div>
@@ -107,8 +119,6 @@ export default class HomePage extends Component {
         </label>
         <p>A={base} numbers</p>
         <p>B={compare} numbers</p>
-
-        <div className="buttons">
         <style jsx>{`
           .buttons {
           float:right;
@@ -117,13 +127,20 @@ export default class HomePage extends Component {
           flex-direction: row;
           justify-content: space-around;
         }
+        .vennSvg {
+          width:80%;
+          margin-left: auto;
+          margin-right: auto;
+        }
         `}</style>
+        <div className="buttons">
         <div className="base">
         <h3>Change A</h3>
         <button onClick={this.changeBaseAll}>All</button>
         <button onClick={this.changeBaseOdd}>Odd</button>
         <button onClick={this.changeBaseEven}>Even</button>
         <button onClick={this.changeBasePrime}>Prime</button>
+        <button onClick={this.changeBaseFibonacci}>Fibonacci</button>
 
         </div>
         <div className="compare">
@@ -132,6 +149,7 @@ export default class HomePage extends Component {
         <button onClick={this.changeCompareOdd}>Odd</button>
         <button onClick={this.changeCompareEven}>Even</button>
         <button onClick={this.changeComparePrime}>Prime</button>
+        <button onClick={this.changeCompareFibonacci}>Fibonacci</button>
         </div>
         </div>
 
@@ -140,17 +158,17 @@ export default class HomePage extends Component {
           [
             {sets: ['A'], size: baseNumberArray.length},
             {sets: ['B'], size: compareNumberArray.length},
-            {sets: ['A','B'], size:  union.length}
+            {sets: ['A','B'], size:  intersection.length}
           ]
         } />
         </div>
 
 
-        <p>A = {baseNumberArray.join(',')}</p>
-        <p>B = {compareNumberArray.join(',')}</p>
-        <p>A - B = {baseArray}</p>
-        <p>B - A = {compareArray}</p>
-        <p>A ∩ B = {union}</p>
+        <p>A = {'{' + baseNumberArray.join(',') + '}'}</p>
+        <p>B = {'{' + compareNumberArray.join(',') + '}'}</p>
+        <p>A - B = {'{' + baseArray.join(',') + '}'}</p>
+        <p>B - A = {'{' + compareArray.join(',') + '}'}</p>
+        <p>A ∩ B = {'{' + intersection.join(',') + '}'}</p>
       </div>
 
     )

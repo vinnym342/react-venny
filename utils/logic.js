@@ -2,6 +2,14 @@ export function generateNumber(type,range) {
   let results = []
   for(let i = 1; i <= range; i++) {
     switch(type) {
+
+      case "Fibonacci":
+          let fibonacciNumber = fibonacci(i)
+          if(fibonacciNumber <= range ){
+            results.push(fibonacciNumber)
+          }else{
+            break
+          }
       case "Odd":
           if(i % 2 === 0 ){
             continue
@@ -38,6 +46,19 @@ export function generateNumber(type,range) {
 return results
 }
 
+function fibonacci(num){
+  var a = 1, b = 0, temp;
+
+  while (num >= 0){
+    temp = a;
+    a = a + b;
+    b = temp;
+    num--;
+  }
+
+  return b;
+}
+
 function removeFromArray(array,removeArray){
   for(let i = 0; i < removeArray.length; i++ ){
     array.shift(removeArray[i])
@@ -45,11 +66,11 @@ function removeFromArray(array,removeArray){
   return array
 }
 
-export function arrayUnion(array1Original,array2Original) {
+export function arrayIntersection(array1Original,array2Original) {
   // Create copies of the passed arrays, so as to not affect the originals
   let array1 = array1Original.slice()
   let array2 = array2Original.slice()
-  let union = []
+  let intersection = []
   let removeArray1 = []
   let removeArray2 = []
   for(let i= array1.length - 1; i >= 0; i--){
@@ -57,12 +78,12 @@ export function arrayUnion(array1Original,array2Original) {
     if (array2.indexOf(number) !== -1) {
       removeArray1.push(array1.indexOf(number))
       removeArray2.push(array2.indexOf(number))
-      union.push(number)
+      intersection.push(number)
     }
   }
   let aMinusB = removeFromArray(array1.reverse(),removeArray1).reverse()
   let bMinuesA = removeFromArray(array2,removeArray2)
-  return [aMinusB,bMinuesA,union.reverse()]
+  return [aMinusB,bMinuesA,intersection.reverse()]
 }
 
 generateNumber("Odd")
