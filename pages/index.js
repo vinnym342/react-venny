@@ -105,8 +105,9 @@ export default class HomePage extends Component {
           Enter decimal:
           <input value={ n } onChange={ this.changeN } />
         </label>
-        <p>{baseNumberArray}</p>
-        <p>{compareNumberArray}</p>
+        <p>A={base} numbers</p>
+        <p>B={compare} numbers</p>
+        <div className="buttons">
         <div className="base">
         <style jsx>{`
           .base {
@@ -122,21 +123,8 @@ export default class HomePage extends Component {
         <button onClick={this.changeBaseOdd}>Odd</button>
         <button onClick={this.changeBaseEven}>Even</button>
         <button onClick={this.changeBasePrime}>Prime</button>
-        <div className="vennSvg">
-        <Venn sets={
-          [
-            {sets: ['A'], size: baseNumberArray.length},
-            {sets: ['B'], size: compareNumberArray.length},
-            {sets: ['A','B'], size:  union.length}
-            // {sets: ['A'], size: baseArray.length},
-            // {sets: ['B'], size: compareArray.length},
-            // {sets: ['A','B'], size:  union.length}
-          ]
-        } />
-        </div>
-        </div>
 
-
+        </div>
         <div className="compare">
         <style jsx>{`
           .compare {
@@ -151,6 +139,22 @@ export default class HomePage extends Component {
         <button onClick={this.changeCompareEven}>Even</button>
         <button onClick={this.changeComparePrime}>Prime</button>
         </div>
+        </div>
+
+        <div className="vennSvg">
+        <Venn sets={
+          [
+            {sets: ['A'], size: baseNumberArray.length},
+            {sets: ['B'], size: compareNumberArray.length},
+            {sets: ['A','B'], size:  union.length}
+            // {sets: ['A'], size: baseArray.length},
+            // {sets: ['B'], size: compareArray.length},
+            // {sets: ['A','B'], size:  union.length}
+          ]
+        } />
+        </div>
+
+
         <p>A = {baseNumberArray.join(',')}</p>
         <p>B = {compareNumberArray.join(',')}</p>
         <p>A - B = {baseArray}</p>
