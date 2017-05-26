@@ -2,7 +2,6 @@ export function generateNumber(type,rangeTop) {
   let results = []
   for(let i = 1; i <= rangeTop; i++) {
     switch(type) {
-
       case "Fibonacci":
           let fibonacciNumber = fibonacci(i)
           if(fibonacciNumber <= rangeTop ){
